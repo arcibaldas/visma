@@ -1,0 +1,58 @@
+
+<link rel="stylesheet" href="Page.css">
+
+    <body onload="json()"></body>
+<div>
+<p class="left" id="imgSmall"></p>
+</div>
+
+<div class="split right">
+    <div class="centered">
+        <p id="imgLarge"  ></p>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    function myFunction(obj) {
+
+        var listItems = document.getElementsByClassName("newimg");
+        var i = 0;
+
+
+        for (i = 0; i < obj.length; i++) {
+            (function () {
+
+            var elem = document.getElementById("imgSmall").innerHTML += `<br></br><img id="${i}"  class="newimg" src=${obj[i].download_url}  >`;
+
+            let p = obj[i].download_url;
+            listItems[i].addEventListener('click', function() { makeithappen(p);},false);
+
+
+            }());
+
+            //obj[i].width,obj[i].height,obj[i].author,obj[i].download_url>
+
+        }
+    }
+
+    function makeithappen(k) {
+
+        document.getElementById("imgLarge").innerHTML = `<br></br><img class="img" src=${k} width="200px" height="200px" >`;
+
+    }
+
+
+</script>
+<script type="text/javascript">
+    function json () {
+        fetch('https://picsum.photos/v2/list')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                myFunction(myJson)
+            });
+    }
+</script>

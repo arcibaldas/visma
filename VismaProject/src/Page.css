@@ -1,0 +1,46 @@
+
+.split {
+    height: 100%;
+    width: 25%;
+
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+    position: center;
+}
+.blank {
+
+    height: 20px;
+}
+
+.picture {
+    margin-left: 20%;
+    margin-right: 20%;
+
+
+}
+.newimg {
+     width: 200px;
+     height: 200px;
+
+ }
+
+.img2 {
+    max-width: 100%;
+    max-height: 100%;
+
+}
+
+/* Control the right side */
+.right {
+    height: 100%;
+    width: 75%;
+    right: 0;
+    background-color: grey;
+}
