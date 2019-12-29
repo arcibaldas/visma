@@ -1,52 +1,54 @@
-
 <link rel="stylesheet" href="Page.css">
 
-    <body onload="json()"></body>
+<body onload="json()"></body>
 <div>
-<p class="left" id="imgSmall"></p>
+    <p class="leftside" id="imgSmall"></p>
 </div>
 
-<div class="split right">
+<div class="split rightside">
     <div class="centered">
-        <p id="imgLarge"  ></p>
+        <p id="imgLarge"></p>
     </div>
 </div>
 
 <script type="text/javascript">
 
-
+    /* function to print the images  */
     function myFunction(obj) {
 
-        var listItems = document.getElementsByClassName("newimg");
-        var i = 0;
+
+        var listImages = document.getElementsByClassName("newImage");
 
 
-        for (i = 0; i < obj.length; i++) {
-            (function () {
+        for (var i = 0; i < obj.length; i++) {
+            (function (i) {
 
-            var elem = document.getElementById("imgSmall").innerHTML += `<br></br><img id="${i}"  class="newimg" src=${obj[i].download_url}  >`;
-
-            let p = obj[i].download_url;
-            listItems[i].addEventListener('click', function() { makeithappen(p);},false);
+                document.getElementById("imgSmall").innerHTML += `<br></br><img id="${i}"  class="newImage" src=${obj[i].download_url}  >`;
 
 
-            }());
+                let toenlarge = obj[i];
+                listImages[i].onload = function () {
+                    listImages[i].addEventListener('click', function () {
+                        enlargeImage(toenlarge);
+                    }, true);
+                }
+            }(i));
 
-            //obj[i].width,obj[i].height,obj[i].author,obj[i].download_url>
 
         }
     }
 
-    function makeithappen(k) {
+    function enlargeImage(k) {
 
-        document.getElementById("imgLarge").innerHTML = `<br></br><img class="img" src=${k} width="200px" height="200px" >`;
+        document.getElementById("imgLarge").innerHTML = `<br> AUTHOR: ${k.author}, WIDTH: ${k.width}, HEIGHT: ${k.height}</br><img class="enlargedImage" src=${k.download_url} >`;
 
     }
 
 
+    /* Function to read json from the link */
 </script>
 <script type="text/javascript">
-    function json () {
+    function json() {
         fetch('https://picsum.photos/v2/list')
             .then(function (response) {
                 return response.json();
